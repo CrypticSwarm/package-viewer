@@ -1,0 +1,9 @@
+name: Super-Project
+
+author: Billy Bob
+
+license: "MIT-style license."
+
+sources:
+  - Super.js
+  - Duper.js

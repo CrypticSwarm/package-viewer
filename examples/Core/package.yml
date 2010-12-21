@@ -1,0 +1,10 @@
+name: Core
+
+author: Core Team 
+
+license: "MIT-style license."
+
+sources:
+  - MockArray.js
+  - MockElement.js
+  - MockClass.js

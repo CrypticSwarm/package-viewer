@@ -1,0 +1,8 @@
+h1
+	=file
+h2 Package
+.packages
+	!=partial('package', { locals: { package: package}})
+h2 Authors
+ul.authors
+	!=partial('author', { collection: authors})

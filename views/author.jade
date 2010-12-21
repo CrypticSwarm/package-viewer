@@ -1,0 +1,8 @@
+h1
+	=name
+h2 Files
+ul.files
+  !=partial('file', { collection: files})
+h2 Packages
+ul.packages
+  !=partial('package', { collection: packages})

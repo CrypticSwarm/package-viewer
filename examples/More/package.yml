@@ -1,0 +1,10 @@
+name: More
+
+author: More Team
+
+
+license: "MIT-style license."
+
+sources:
+  - Fx.KitchenSink.js
+  - Request.Faucet.js

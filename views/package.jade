@@ -1,0 +1,8 @@
+h2 
+	a(href='/' + package + '/download') Download
+h2 Authors
+ul.authors
+	!=partial('author', { collection: authors})
+h2 Files
+ul.files
+  !=partial('file', { collection: files})
