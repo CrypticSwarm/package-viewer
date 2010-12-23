@@ -40,7 +40,7 @@ module.exports = function(config) {
       , files = []
       , packages = []
     packager.getPackages().forEach(function(package){
-			if (packager.getPackageAuthors(package).indexOf(name) != -1) packages.include(package);
+      if (packager.getPackageAuthors(package).indexOf(name) != -1) packages.include(package);
       packager.getAllFiles(package).forEach(function(file) {
         if (packager.getFileAuthors(file).indexOf(name) != -1) {
           files.push(file);
@@ -71,7 +71,7 @@ module.exports = function(config) {
       { locals:
         { authors: authors.sort()
         , files: files.sort()
-				, package: package
+        , package: package
         }
     });
   });
