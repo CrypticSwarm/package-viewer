@@ -18,14 +18,14 @@ module.exports = function(config) {
   app.get('/', function(req, res) {
     res.render('index',
       { locals:
-        { packages: packager.get_packages() }
+        { packages: packager.getPackages() }
     });
   });
 
   app.get('/file/:package/:file', function(req, res) {
     var package = req.params.package
       , file = req.params.file
-      , authors = packager.get_file_authors(package + '/' + file).sort();
+      , authors = packager.getFileAuthors(package + '/' + file).sort();
     res.render('file',
       { locals:
         { package: package
@@ -39,10 +39,10 @@ module.exports = function(config) {
     var name = req.params.name
       , files = []
       , packages = []
-    packager.get_packages().forEach(function(package){
-			if (packager.get_package_authors(package).indexOf(name) != -1) packages.include(package);
-      packager.get_all_files(package).forEach(function(file) {
-        if (packager.get_file_authors(file).indexOf(name) != -1) {
+    packager.getPackages().forEach(function(package){
+			if (packager.getPackageAuthors(package).indexOf(name) != -1) packages.include(package);
+      packager.getAllFiles(package).forEach(function(file) {
+        if (packager.getFileAuthors(file).indexOf(name) != -1) {
           files.push(file);
           packages.include(package);
         }
@@ -59,11 +59,11 @@ module.exports = function(config) {
 
   app.get('/:package', function(req, res) {
     var package = req.params.package;
-    if (!packager.package_exists(package)) res.send(404);
-    var authors = packager.get_package_authors(package)
-      , files = packager.get_all_files(package)
+    if (!packager.packageExists(package)) res.send(404);
+    var authors = packager.getPackageAuthors(package)
+      , files = packager.getAllFiles(package)
     files.forEach(function(file){
-      packager.get_file_authors(file).forEach(function(author) {
+      packager.getFileAuthors(file).forEach(function(author) {
         authors.include(author);
       });
     });
@@ -77,7 +77,7 @@ module.exports = function(config) {
   });
 
   app.get('/:package/download', function(req, res){
-    if (packager.package_exists(req.params.package))
+    if (packager.packageExists(req.params.package))
       packager.build(null, null, [req.params.package], null, null, function(text){
         res.writeHead(200, { 'Content-Type': 'text/javascript', 'Content-Length': text.length });
         res.end(text);
